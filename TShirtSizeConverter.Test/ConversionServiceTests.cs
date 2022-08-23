@@ -98,21 +98,25 @@ public class ConversionServiceTests
     [Fact]
     public void TestF()
     {
-        Assert.Equal(0, Fs(0));
-        Assert.Equal(1, Fs(1));
-        Assert.Equal(3, Fs(2));
-        Assert.Equal(8, Fs(3));
-        Assert.Equal(21, Fs(4));
-        Assert.Equal(55, Fs(5));
+        Assert.Equal(0, EveryOtherFib(0));
+        Assert.Equal(1, EveryOtherFib(1));
+        Assert.Equal(3, EveryOtherFib(2));
+        Assert.Equal(8, EveryOtherFib(3));
+        Assert.Equal(21, EveryOtherFib(4));
+        Assert.Equal(55, EveryOtherFib(5));
     }
 
-    private double Fs(int p)
+    private double EveryOtherFib(int p)
     {
-        int F(int x) => x > 1 ? F(x - 1) + F(x - 2) : (x == 0) ? x : 1;
+        int Fib(int x) => x > 1 ? Fib(x - 1) + Fib(x - 2) : (x == 0) ? x : 1;
         var dict = new Dictionary<int, int> { {0,0}, {1,1} };
-        for (var i = 4; i <= 10; i++)
+        var counter = 2;
+        for (var i = 3; i <= 10; i++)
         {
-            if (i % 2 == 0) dict.Add(i, F(i));
+            if (i % 2 == 0)
+            {
+                dict.Add(counter++, Fib(i));
+            }
         }
         return dict.ContainsKey(p) ? dict[p] : 0;
     }
