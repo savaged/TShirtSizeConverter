@@ -4,7 +4,7 @@ namespace TShirtSizeConverter.Test;
 
 public class ConversionServiceTests
 {
-   [Fact]
+    [Fact]
     public void TestDefaultConvertWithShirtSize()
     {
         var conversionService = new ConversionService();
