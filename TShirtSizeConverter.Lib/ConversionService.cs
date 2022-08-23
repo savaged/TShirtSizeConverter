@@ -15,9 +15,9 @@ public class ConversionService : IConversionService
         _dict.Add(3, new Tuple<string, double>("L", 0));
         _dict.Add(4, new Tuple<string, double>("XL", 0));
         _dict.Add(5, new Tuple<string, double>("XXL", 0));
-        
-        incrementation ??= f => f * 3;
-        SetShirtSizes(0.5f, incrementation);
+
+        incrementation ??= d => Math.Pow(3, Math.Round(d * 0.9, MidpointRounding.ToZero));
+        SetShirtSizes(0.5, incrementation);
     }
     
     public string Convert(string input)
@@ -61,11 +61,20 @@ public class ConversionService : IConversionService
     private void SetShirtSize(int pos, double value, Func<double, double> incrementation)
     {
         if (pos >= _dict.Count) return;
-        
-        _dict[pos] = new Tuple<string, double>(_dict[pos].Item1, value);
 
-        value = Math.Round(incrementation(value), MidpointRounding.ToZero);
-        SetShirtSize(++pos, value, incrementation);
+        if (value > 0)
+        {
+            if (!_dict.Values.Any(i => Math.Abs(i.Item2 - value) < 0.1))
+            {
+                _dict[pos] = new Tuple<string, double>(_dict[pos++].Item1, value);
+                value = incrementation(pos);
+            }
+            else
+            {
+                value = incrementation(pos + 1);
+            }
+        }
+        SetShirtSize(pos, value, incrementation);
     }
     
 }
