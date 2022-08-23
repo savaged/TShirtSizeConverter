@@ -36,7 +36,7 @@ public class ConversionServiceTests
     [Fact]
     public void TestMultipliedByThreeConvertWithShirtSize()
     {
-        double ByThree(double d) => Math.Pow(3, Math.Round(d * 0.9, MidpointRounding.ToZero));
+        double ByThree(double x) => Math.Pow(3, Math.Round(x * 0.9, MidpointRounding.ToZero));
         var conversionService = new ConversionService(ByThree);
         Assert.Equal("0.5", conversionService.Convert("XS"));
         Assert.Equal("1", conversionService.Convert("S"));
@@ -52,7 +52,7 @@ public class ConversionServiceTests
     [Fact]
     public void TestMultipliedByThreeConvertWithManDays()
     {
-        double ByThree(double d) => Math.Pow(3, Math.Round(d * 0.9, MidpointRounding.ToZero));
+        double ByThree(double x) => Math.Pow(3, Math.Round(x * 0.9, MidpointRounding.ToZero));
         var conversionService = new ConversionService(ByThree);
         Assert.Equal("XS", conversionService.Convert("0.5"));
         Assert.Equal("S", conversionService.Convert("1"));
@@ -93,6 +93,28 @@ public class ConversionServiceTests
         Assert.Equal("XXL", conversionService.Convert("8"));
         Assert.Equal("", conversionService.Convert("0.1"));
         Assert.Equal("", conversionService.Convert("100"));
+    }
+
+    [Fact]
+    public void TestF()
+    {
+        Assert.Equal(0, Fs(0));
+        Assert.Equal(1, Fs(1));
+        Assert.Equal(3, Fs(2));
+        Assert.Equal(8, Fs(3));
+        Assert.Equal(21, Fs(4));
+        Assert.Equal(55, Fs(5));
+    }
+
+    private double Fs(int p)
+    {
+        int F(int x) => x > 1 ? F(x - 1) + F(x - 2) : (x == 0) ? x : 1;
+        var dict = new Dictionary<int, int> { {0,0}, {1,1} };
+        for (var i = 4; i <= 10; i++)
+        {
+            if (i % 2 == 0) dict.Add(i, F(i));
+        }
+        return dict.ContainsKey(p) ? dict[p] : 0;
     }
     
 }
