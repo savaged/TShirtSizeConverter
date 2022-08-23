@@ -95,30 +95,4 @@ public class ConversionServiceTests
         Assert.Equal("", conversionService.Convert("100"));
     }
 
-    [Fact]
-    public void TestF()
-    {
-        Assert.Equal(0, EveryOtherFib(0));
-        Assert.Equal(1, EveryOtherFib(1));
-        Assert.Equal(3, EveryOtherFib(2));
-        Assert.Equal(8, EveryOtherFib(3));
-        Assert.Equal(21, EveryOtherFib(4));
-        Assert.Equal(55, EveryOtherFib(5));
-    }
-
-    private double EveryOtherFib(int p)
-    {
-        int Fib(int x) => x > 1 ? Fib(x - 1) + Fib(x - 2) : (x == 0) ? x : 1;
-        var dict = new Dictionary<int, int> { {0,0}, {1,1} };
-        var counter = 2;
-        for (var i = 3; i <= 10; i++)
-        {
-            if (i % 2 == 0)
-            {
-                dict.Add(counter++, Fib(i));
-            }
-        }
-        return dict.ContainsKey(p) ? dict[p] : 0;
-    }
-    
 }

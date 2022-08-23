@@ -9,25 +9,15 @@ public class ConversionService : IConversionService
     public ConversionService(Func<double, double>? incrementation = null)
     {
         _dict = new Dictionary<int, Tuple<string, double>>();
-        if (incrementation == null)
-        {
-            _dict.Add(0, new Tuple<string, double>("XS", 0.5));
-            _dict.Add(1, new Tuple<string, double>("S", 1));
-            _dict.Add(2, new Tuple<string, double>("M", 3));
-            _dict.Add(3, new Tuple<string, double>("L", 8));
-            _dict.Add(4, new Tuple<string, double>("XL", 21));
-            _dict.Add(5, new Tuple<string, double>("XXL", 55));
-        }
-        else
-        {
-            _dict.Add(0, new Tuple<string, double>("XS", 0));
-            _dict.Add(1, new Tuple<string, double>("S", 0));
-            _dict.Add(2, new Tuple<string, double>("M", 0));
-            _dict.Add(3, new Tuple<string, double>("L", 0));
-            _dict.Add(4, new Tuple<string, double>("XL", 0));
-            _dict.Add(5, new Tuple<string, double>("XXL", 0));
-            SetShirtSizes(0.5, incrementation);
-        }
+        _dict.Add(0, new Tuple<string, double>("XS", 0));
+        _dict.Add(1, new Tuple<string, double>("S", 0));
+        _dict.Add(2, new Tuple<string, double>("M", 0));
+        _dict.Add(3, new Tuple<string, double>("L", 0));
+        _dict.Add(4, new Tuple<string, double>("XL", 0));
+        _dict.Add(5, new Tuple<string, double>("XXL", 0));
+
+        incrementation ??= f => SkippedFib((int)f);
+        SetShirtSizes(0.5, incrementation);
     }
 
     public string Convert(string input)
@@ -84,6 +74,21 @@ public class ConversionService : IConversionService
             }
         }
         SetShirtSize(pos, value, incrementation);
+    }
+    
+    private double SkippedFib(int p)
+    {
+        int Fib(int x) => x > 1 ? Fib(x - 1) + Fib(x - 2) : (x == 0) ? x : 1;
+        var dict = new Dictionary<int, int> { {0,0}, {1,1} };
+        var counter = 2;
+        for (var i = 3; i <= 10; i++)
+        {
+            if (i % 2 == 0)
+            {
+                dict.Add(counter++, Fib(i));
+            }
+        }
+        return dict.ContainsKey(p) ? dict[p] : 0;
     }
     
 }
