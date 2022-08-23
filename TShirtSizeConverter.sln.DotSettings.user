@@ -1,7 +1,0 @@
-﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4d14082d_002De89d_002D4a2f_002Da97a_002Dc91bcb3d4af2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestDefaultConvertWithManDays" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::C9DD8E33-6A62-444D-BCC9-5C50B5AB8A69::net6.0::TShirtSizeConverter.Test.ConversionServiceTests.TestDefaultConvertWithManDays&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::C9DD8E33-6A62-444D-BCC9-5C50B5AB8A69::net6.0::TShirtSizeConverter.Test.ConversionServiceTests.TestDefaultConvertWithShirtSize&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
