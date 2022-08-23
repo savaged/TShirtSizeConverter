@@ -16,7 +16,7 @@ public class ConversionService : IConversionService
         _dict.Add(4, new Tuple<string, double>("XL", 0));
         _dict.Add(5, new Tuple<string, double>("XXL", 0));
         
-        incrementation ??= f => Math.Round(f * 3, MidpointRounding.ToZero);
+        incrementation ??= f => f * 3;
         SetShirtSizes(0.5f, incrementation);
     }
     
@@ -64,7 +64,7 @@ public class ConversionService : IConversionService
         
         _dict[pos] = new Tuple<string, double>(_dict[pos].Item1, value);
 
-        value = incrementation(value);
+        value = Math.Round(incrementation(value), MidpointRounding.ToZero);
         SetShirtSize(++pos, value, incrementation);
     }
     
