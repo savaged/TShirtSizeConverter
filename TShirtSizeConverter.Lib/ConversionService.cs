@@ -5,21 +5,31 @@ namespace TShirtSizeConverter.Lib;
 public class ConversionService : IConversionService
 {
     private readonly IDictionary<int, Tuple<string, double>> _dict;
-    
+
     public ConversionService(Func<double, double>? incrementation = null)
     {
         _dict = new Dictionary<int, Tuple<string, double>>();
-        _dict.Add(0, new Tuple<string, double>("XS", 0));
-        _dict.Add(1, new Tuple<string, double>("S", 0));
-        _dict.Add(2, new Tuple<string, double>("M", 0));
-        _dict.Add(3, new Tuple<string, double>("L", 0));
-        _dict.Add(4, new Tuple<string, double>("XL", 0));
-        _dict.Add(5, new Tuple<string, double>("XXL", 0));
-
-        incrementation ??= d => Math.Pow(3, Math.Round(d * 0.9, MidpointRounding.ToZero));
-        SetShirtSizes(0.5, incrementation);
+        if (incrementation == null)
+        {
+            _dict.Add(0, new Tuple<string, double>("XS", 0.5));
+            _dict.Add(1, new Tuple<string, double>("S", 1));
+            _dict.Add(2, new Tuple<string, double>("M", 3));
+            _dict.Add(3, new Tuple<string, double>("L", 8));
+            _dict.Add(4, new Tuple<string, double>("XL", 21));
+            _dict.Add(5, new Tuple<string, double>("XXL", 55));
+        }
+        else
+        {
+            _dict.Add(0, new Tuple<string, double>("XS", 0));
+            _dict.Add(1, new Tuple<string, double>("S", 0));
+            _dict.Add(2, new Tuple<string, double>("M", 0));
+            _dict.Add(3, new Tuple<string, double>("L", 0));
+            _dict.Add(4, new Tuple<string, double>("XL", 0));
+            _dict.Add(5, new Tuple<string, double>("XXL", 0));
+            SetShirtSizes(0.5, incrementation);
+        }
     }
-    
+
     public string Convert(string input)
     {
         var value = string.Empty;
@@ -43,7 +53,6 @@ public class ConversionService : IConversionService
             first = i;
             break;
         }
-
         return first.Value?.Item1 ?? string.Empty;
     }
     
