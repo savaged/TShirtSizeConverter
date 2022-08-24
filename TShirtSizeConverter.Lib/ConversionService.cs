@@ -36,14 +36,7 @@ public class ConversionService : IConversionService
 
     private string DaysToTShirtSize(double manDays)
     {
-        var first = new KeyValuePair<int, Tuple<string, double>>();
-        foreach (var i in _dict)
-        {
-            if (Math.Abs(i.Value.Item2 - manDays) > 0.1) continue;
-            first = i;
-            break;
-        }
-        return first.Value?.Item1 ?? string.Empty;
+        return _dict.MinBy(i => Math.Abs(manDays - i.Value.Item2)).Value.Item1;
     }
     
     private string ShirtSizeToDays(string shirtSize)

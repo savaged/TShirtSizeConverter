@@ -29,8 +29,12 @@ public class ConversionServiceTests
         Assert.Equal("L", conversionService.Convert("8"));
         Assert.Equal("XL", conversionService.Convert("21"));
         Assert.Equal("XXL", conversionService.Convert("55"));
-        Assert.Equal("", conversionService.Convert("0.1"));
-        Assert.Equal("", conversionService.Convert("100"));
+        // Closest
+        Assert.Equal("XS", conversionService.Convert("0.1"));
+        Assert.Equal("XXL", conversionService.Convert("100"));
+        Assert.Equal("L", conversionService.Convert("6"));
+        Assert.Equal("L", conversionService.Convert("14"));
+        Assert.Equal("XL", conversionService.Convert("20"));
     }
      
     [Fact]
