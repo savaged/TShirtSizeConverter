@@ -15,6 +15,7 @@ public class ConversionService : IConversionService
         _dict.Add(3, new Tuple<string, double>("L", 0));
         _dict.Add(4, new Tuple<string, double>("XL", 0));
         _dict.Add(5, new Tuple<string, double>("XXL", 0));
+        _dict.Add(6, new Tuple<string, double>("Project", 0));
 
         incrementation ??= f => SkippedFib((int)f);
         SetShirtSizes(0.5, incrementation);
@@ -22,16 +23,8 @@ public class ConversionService : IConversionService
 
     public string Convert(string input)
     {
-        var value = string.Empty;
-        if (double.TryParse(input, out var manDays))
-        {
-            value = DaysToTShirtSize(manDays);
-        }
-        else if (_dict.Any(e => e.Value.Item1 == input))
-        {
-            value = ShirtSizeToDays(input);
-        }
-        return value;
+        return double.TryParse(input, out var manDays) ?
+            DaysToTShirtSize(manDays) : ShirtSizeToDays(input);
     }
 
     private string DaysToTShirtSize(double manDays)
@@ -41,8 +34,14 @@ public class ConversionService : IConversionService
     
     private string ShirtSizeToDays(string shirtSize)
     {
-        return _dict.FirstOrDefault(i => i.Value.Item1 == shirtSize).Value.Item2.ToString(
-            CultureInfo.InvariantCulture);
+        if (string.IsNullOrEmpty(shirtSize)) return string.Empty;
+        return shirtSize.Length switch
+        {
+            > 2 when shirtSize.EndsWith("S") => "<0.5",
+            > 3 when shirtSize.EndsWith("L") => "Project",
+            _ => _dict.FirstOrDefault(i => i.Value.Item1 == shirtSize)
+                .Value.Item2.ToString(CultureInfo.InvariantCulture)
+        };
     }
 
     private void SetShirtSizes(double startValue, Func<double, double> incrementation)
@@ -74,7 +73,7 @@ public class ConversionService : IConversionService
         int Fib(int x) => x > 1 ? Fib(x - 1) + Fib(x - 2) : (x == 0) ? x : 1;
         var dict = new Dictionary<int, int> { {0,0}, {1,1} };
         var counter = 2;
-        for (var i = 3; i <= 10; i++)
+        for (var i = 3; i <= 12; i++)
         {
             if (i % 2 == 0)
             {
