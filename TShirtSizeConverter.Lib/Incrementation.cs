@@ -2,13 +2,13 @@ namespace TShirtSizeConverter.Lib;
 
 public static class Incrementation
 {
-    public static double EvenSkippedFib(int p) => SkippedFib(p);
+    public static double EvenSkippedFibonacci(int p) => SkippedFib(p);
     
-    public static double OddSkippedFib(int p) => SkippedFib(p, true);
+    public static double OddSkippedFibonacci(int p) => SkippedFib(p, true);
     
     public static double ByThree(double x) => Math.Pow(3, Math.Round(x * 0.9, MidpointRounding.ToZero));
     
-    public static double Fib(double x) => x > 1 ? Fib(x - 1) + Fib(x - 2) : (x == 0) ? x : 1;
+    public static double Fibonacci(double x) => x > 1 ? Fibonacci(x - 1) + Fibonacci(x - 2) : (x == 0) ? x : 1;
     
     private static double SkippedFib(int p, bool skipOdd = false)
     {

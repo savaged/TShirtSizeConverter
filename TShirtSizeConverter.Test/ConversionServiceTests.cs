@@ -40,7 +40,7 @@ public class ConversionServiceTests
     [Fact]
     public void TestOddSkippedFibonacciConvertWithShirtSize()
     {
-        var conversionService = new ConversionService(f => Incrementation.OddSkippedFib((int)f));
+        var conversionService = new ConversionService(f => Incrementation.OddSkippedFibonacci((int)f));
         Assert.Equal("0.5", conversionService.Convert("XS"));
         Assert.Equal("1", conversionService.Convert("S"));
         Assert.Equal("2", conversionService.Convert("M"));
@@ -55,7 +55,7 @@ public class ConversionServiceTests
     [Fact]
     public void TestOddSkippedFibonacciConvertWithManDays()
     {
-        var conversionService = new ConversionService(f => Incrementation.OddSkippedFib((int)f));
+        var conversionService = new ConversionService(f => Incrementation.OddSkippedFibonacci((int)f));
         Assert.Equal("XS", conversionService.Convert("0.5"));
         Assert.Equal("S", conversionService.Convert("1"));
         Assert.Equal("M", conversionService.Convert("2"));
@@ -103,7 +103,7 @@ public class ConversionServiceTests
     [Fact]
     public void TestFibonacciConvertWithShirtSize()
     {
-        var conversionService = new ConversionService(Incrementation.Fib);
+        var conversionService = new ConversionService(Incrementation.Fibonacci);
         Assert.Equal("0.5", conversionService.Convert("XS"));
         Assert.Equal("1", conversionService.Convert("S"));
         Assert.Equal("2", conversionService.Convert("M"));
@@ -118,7 +118,7 @@ public class ConversionServiceTests
     [Fact]
     public void TestFibonacciConvertWithManDays()
     {
-        var conversionService = new ConversionService(Incrementation.Fib);
+        var conversionService = new ConversionService(Incrementation.Fibonacci);
         Assert.Equal("XS", conversionService.Convert("0.5"));
         Assert.Equal("S", conversionService.Convert("1"));
         Assert.Equal("M", conversionService.Convert("2"));
