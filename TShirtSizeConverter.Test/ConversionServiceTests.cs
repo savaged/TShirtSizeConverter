@@ -36,12 +36,45 @@ public class ConversionServiceTests
         Assert.Equal("L", conversionService.Convert("14"));
         Assert.Equal("XL", conversionService.Convert("20"));
     }
+    
+    [Fact]
+    public void TestOddSkippedFibonacciConvertWithShirtSize()
+    {
+        var conversionService = new ConversionService(f => Incrementation.OddSkippedFib((int)f));
+        Assert.Equal("0.5", conversionService.Convert("XS"));
+        Assert.Equal("1", conversionService.Convert("S"));
+        Assert.Equal("2", conversionService.Convert("M"));
+        Assert.Equal("5", conversionService.Convert("L"));
+        Assert.Equal("13", conversionService.Convert("XL"));
+        Assert.Equal("34", conversionService.Convert("XXL"));
+        Assert.Equal("<0.5", conversionService.Convert("XXS"));
+        Assert.Equal("Project", conversionService.Convert("XXXL"));
+        Assert.Equal("", conversionService.Convert(""));
+    }
+    
+    [Fact]
+    public void TestOddSkippedFibonacciConvertWithManDays()
+    {
+        var conversionService = new ConversionService(f => Incrementation.OddSkippedFib((int)f));
+        Assert.Equal("XS", conversionService.Convert("0.5"));
+        Assert.Equal("S", conversionService.Convert("1"));
+        Assert.Equal("M", conversionService.Convert("2"));
+        Assert.Equal("L", conversionService.Convert("5"));
+        Assert.Equal("XL", conversionService.Convert("13"));
+        Assert.Equal("XXL", conversionService.Convert("34"));
+        // Closest
+        Assert.Equal("XS", conversionService.Convert("0.1"));
+        Assert.Equal("Project", conversionService.Convert("100"));
+        Assert.Equal("L", conversionService.Convert("6"));
+        Assert.Equal("L", conversionService.Convert("8"));
+        Assert.Equal("XL", conversionService.Convert("14"));
+        Assert.Equal("XXL", conversionService.Convert("55"));
+    }
      
     [Fact]
     public void TestMultipliedByThreeConvertWithShirtSize()
     {
-        double ByThree(double x) => Math.Pow(3, Math.Round(x * 0.9, MidpointRounding.ToZero));
-        var conversionService = new ConversionService(ByThree);
+        var conversionService = new ConversionService(Incrementation.ByThree);
         Assert.Equal("0.5", conversionService.Convert("XS"));
         Assert.Equal("1", conversionService.Convert("S"));
         Assert.Equal("3", conversionService.Convert("M"));
@@ -56,8 +89,7 @@ public class ConversionServiceTests
     [Fact]
     public void TestMultipliedByThreeConvertWithManDays()
     {
-        double ByThree(double x) => Math.Pow(3, Math.Round(x * 0.9, MidpointRounding.ToZero));
-        var conversionService = new ConversionService(ByThree);
+        var conversionService = new ConversionService(Incrementation.ByThree);
         Assert.Equal("XS", conversionService.Convert("0.5"));
         Assert.Equal("S", conversionService.Convert("1"));
         Assert.Equal("M", conversionService.Convert("3"));
@@ -71,8 +103,7 @@ public class ConversionServiceTests
     [Fact]
     public void TestFibonacciConvertWithShirtSize()
     {
-        double Fib(double x) => x > 1 ? Fib(x - 1) + Fib(x - 2) : (x == 0) ? x : 1;
-        var conversionService = new ConversionService(Fib);
+        var conversionService = new ConversionService(Incrementation.Fib);
         Assert.Equal("0.5", conversionService.Convert("XS"));
         Assert.Equal("1", conversionService.Convert("S"));
         Assert.Equal("2", conversionService.Convert("M"));
@@ -87,8 +118,7 @@ public class ConversionServiceTests
     [Fact]
     public void TestFibonacciConvertWithManDays()
     {
-        double Fib(double x) => x > 1 ? Fib(x - 1) + Fib(x - 2) : (x == 0) ? x : 1;
-        var conversionService = new ConversionService(Fib);
+        var conversionService = new ConversionService(Incrementation.Fib);
         Assert.Equal("XS", conversionService.Convert("0.5"));
         Assert.Equal("S", conversionService.Convert("1"));
         Assert.Equal("M", conversionService.Convert("2"));

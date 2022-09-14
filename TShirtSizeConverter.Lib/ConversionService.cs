@@ -17,7 +17,7 @@ public class ConversionService : IConversionService
         _dict.Add(5, new Tuple<string, double>("XXL", 0));
         _dict.Add(6, new Tuple<string, double>("Project", 0));
 
-        incrementation ??= f => SkippedFib((int)f);
+        incrementation ??= f => Incrementation.EvenSkippedFib((int)f);
         SetShirtSizes(0.5, incrementation);
     }
 
@@ -66,21 +66,6 @@ public class ConversionService : IConversionService
             }
         }
         SetShirtSize(pos, value, incrementation);
-    }
-    
-    private double SkippedFib(int p)
-    {
-        int Fib(int x) => x > 1 ? Fib(x - 1) + Fib(x - 2) : (x == 0) ? x : 1;
-        var dict = new Dictionary<int, int> { {0,0}, {1,1} };
-        var counter = 2;
-        for (var i = 3; i <= 12; i++)
-        {
-            if (i % 2 == 0)
-            {
-                dict.Add(counter++, Fib(i));
-            }
-        }
-        return dict.ContainsKey(p) ? dict[p] : 0;
     }
     
 }
