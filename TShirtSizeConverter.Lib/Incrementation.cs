@@ -12,14 +12,13 @@ public static class Incrementation
     
     private static double SkippedFib(int p, bool skipOdd = false)
     {
-        int Fib(int x) => x > 1 ? Fib(x - 1) + Fib(x - 2) : (x == 0) ? x : 1;
         var dict = new Dictionary<int, int> { {0,0}, {1,1} };
         var counter = 2;
         for (var i = 3; i <= 12; i++)
         {
             if (i % 2 == (skipOdd ? 1 : 0))
             {
-                dict.Add(counter++, Fib(i));
+                dict.Add(counter++, (int)Fibonacci(i));
             }
         }
         return dict.ContainsKey(p) ? dict[p] : 0;
