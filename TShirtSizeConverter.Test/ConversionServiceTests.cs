@@ -10,6 +10,40 @@ public class ConversionServiceTests
         var conversionService = new ConversionService();
         Assert.Equal("0.5", conversionService.Convert("XS"));
         Assert.Equal("1", conversionService.Convert("S"));
+        Assert.Equal("2", conversionService.Convert("M"));
+        Assert.Equal("5", conversionService.Convert("L"));
+        Assert.Equal("13", conversionService.Convert("XL"));
+        Assert.Equal("34", conversionService.Convert("XXL"));
+        Assert.Equal("<0.5", conversionService.Convert("XXS"));
+        Assert.Equal("Project", conversionService.Convert("XXXL"));
+        Assert.Equal("", conversionService.Convert(""));
+    }
+
+    [Fact]
+    public void TestDefaultConvertWithManDays()
+    {
+        var conversionService = new ConversionService();
+        Assert.Equal("XS", conversionService.Convert("0.5"));
+        Assert.Equal("S", conversionService.Convert("1"));
+        Assert.Equal("M", conversionService.Convert("2"));
+        Assert.Equal("L", conversionService.Convert("5"));
+        Assert.Equal("XL", conversionService.Convert("13"));
+        Assert.Equal("XXL", conversionService.Convert("34"));
+        // Closest
+        Assert.Equal("XS", conversionService.Convert("0.1"));
+        Assert.Equal("Project", conversionService.Convert("100"));
+        Assert.Equal("L", conversionService.Convert("6"));
+        Assert.Equal("L", conversionService.Convert("8"));
+        Assert.Equal("XL", conversionService.Convert("14"));
+        Assert.Equal("XXL", conversionService.Convert("55"));
+    }
+
+    [Fact]
+    public void TestEvenSkippedFibonacciConvertWithShirtSize()
+    {
+        var conversionService = new ConversionService(f => Incrementation.EvenSkippedFibonacci((int)f));
+        Assert.Equal("0.5", conversionService.Convert("XS"));
+        Assert.Equal("1", conversionService.Convert("S"));
         Assert.Equal("3", conversionService.Convert("M"));
         Assert.Equal("8", conversionService.Convert("L"));
         Assert.Equal("21", conversionService.Convert("XL"));
@@ -20,9 +54,9 @@ public class ConversionServiceTests
     }
     
     [Fact]
-    public void TestDefaultConvertWithManDays()
+    public void TestEvenSkippedFibonacciConvertWithManDays()
     {
-        var conversionService = new ConversionService();
+        var conversionService = new ConversionService(f => Incrementation.EvenSkippedFibonacci((int)f));
         Assert.Equal("XS", conversionService.Convert("0.5"));
         Assert.Equal("S", conversionService.Convert("1"));
         Assert.Equal("M", conversionService.Convert("3"));

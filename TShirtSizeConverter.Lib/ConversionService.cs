@@ -17,7 +17,7 @@ public class ConversionService : IConversionService
         _dict.Add(5, new Tuple<string, double>("XXL", 0));
         _dict.Add(6, new Tuple<string, double>("Project", 0));
 
-        incrementation ??= f => Incrementation.EvenSkippedFibonacci((int)f);
+        incrementation ??= f => Incrementation.OddSkippedFibonacci((int)f);
         SetShirtSizes(0.5, incrementation);
     }
 
