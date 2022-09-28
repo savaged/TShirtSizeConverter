@@ -1,0 +1,21 @@
+﻿@model TShirtSizeConverter.Web.Models.TShirtSizeConversion
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Conversion</h1>
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Output)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Output)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Create">Back</a>
+</div>

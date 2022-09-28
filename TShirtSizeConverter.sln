@@ -1,16 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TShirtSizeConverter.CLI", "TShirtSizeConverter.CLI\TShirtSizeConverter.CLI.csproj", "{FCCCB8D2-439D-4504-8539-F8C459AC488B}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShirtSizeConverter.CLI", "TShirtSizeConverter.CLI\TShirtSizeConverter.CLI.csproj", "{FCCCB8D2-439D-4504-8539-F8C459AC488B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TShirtSizeConverter.Lib", "TShirtSizeConverter.Lib\TShirtSizeConverter.Lib.csproj", "{4A6D623E-E625-4352-A972-DC2CADB001BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShirtSizeConverter.Lib", "TShirtSizeConverter.Lib\TShirtSizeConverter.Lib.csproj", "{4A6D623E-E625-4352-A972-DC2CADB001BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TShirtSizeConverter.Test", "TShirtSizeConverter.Test\TShirtSizeConverter.Test.csproj", "{C9DD8E33-6A62-444D-BCC9-5C50B5AB8A69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TShirtSizeConverter.Test", "TShirtSizeConverter.Test\TShirtSizeConverter.Test.csproj", "{C9DD8E33-6A62-444D-BCC9-5C50B5AB8A69}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{E2FC2D37-D9A4-4D39-B7B6-2EEB74FD16E2}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TShirtSizeConverter.Web", "TShirtSizeConverter.Web\TShirtSizeConverter.Web.csproj", "{363BE6D1-53B8-44EE-9F41-6FC1B9D0ACD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +35,15 @@ Global
 		{C9DD8E33-6A62-444D-BCC9-5C50B5AB8A69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9DD8E33-6A62-444D-BCC9-5C50B5AB8A69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9DD8E33-6A62-444D-BCC9-5C50B5AB8A69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{363BE6D1-53B8-44EE-9F41-6FC1B9D0ACD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{363BE6D1-53B8-44EE-9F41-6FC1B9D0ACD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{363BE6D1-53B8-44EE-9F41-6FC1B9D0ACD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{363BE6D1-53B8-44EE-9F41-6FC1B9D0ACD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1DE67C3E-21FC-4045-AF51-0ED268291FD3}
 	EndGlobalSection
 EndGlobal
